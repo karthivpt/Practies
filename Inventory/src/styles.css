@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+th,label{
+    font-weight: 400;font-size:13px;text-transform: uppercase;
+}
+.error
+{
+    color:red !important;font-size:11px !important;
+}

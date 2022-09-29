@@ -1,0 +1,170 @@
+  
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <div class="container">
+<hr>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-6">
+                    Category List
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right">
+                        <a class="btn btn-primary btn-sm" routerLink="create"><i class="fa fa-plus"></i> Add New Category</a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordred table-hover">
+                        <thead>
+                            <tr class="bg-default" style="background:#6e7ea1 !important;color:white;">
+                                <th>Category Code</th>
+                                <th>Category Name</th>
+                                <th>Category Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of CategoryData">
+                            <td>{{item.CategID}}</td>
+                            <td>{{item.CategName}}</td>
+                            <td>{{item.Status}}</td>
+                            <td><button type="button" (click)="EditRecord(item.CategID)"   class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button> | <a (click)="openPopup_Del()" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer"><h1></h1></div>
+      </div>
+   
+    
+ </div>
+ <div
+ class="modal"
+ tabindex="-1"
+ role="dialog"
+ [ngStyle]="{'display':displayStyle}">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <!-- <div class="modal-header">
+       <h4 class="modal-title">Update Category</h4>
+     </div> -->
+     <div class="modal-body">
+        <div class="row">
+             
+            <div class="col-md-12"> 
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="text-center">Update Category</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form *ngFor="let item of EditData">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                 <label>Category Code</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" name="CategID" value="{{item.CategID}}" readonly="readonly" style="background-color:white;" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                               <label>Category Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                   <input type="text" name="CategName" value="{{item.CategName}}" class="form-control"> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+            <label>Status</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="Active">Active</option>
+                                        <option value="In active">In active</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+            
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary">Save</button> &nbsp;
+                                    <button type="button" class="btn btn-danger">Cancel</button> &nbsp;
+                                    <a routerLink="/category" class="btn btn-default">Go to List</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                </div>
+               
+            </div>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-danger" 
+               (click)="closePopup()">
+         Close
+       </button>
+     </div>
+   </div>
+ </div>
+</div>
+
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle_del}">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" style="color:rgb(153, 7, 7);">  Confirmation Box <i class="fa fa-trash"></i></h6>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px;">Are you sure want to delete this record...???</p>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">
+  <i class="fa fa-check-square"></i>
+</button>
+
+        <button type="button" class="btn btn-danger" 
+                (click)="closePopup_Del()">
+                <i class="fa fa-remove"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
